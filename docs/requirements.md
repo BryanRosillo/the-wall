@@ -13,7 +13,7 @@ I want to create an account
 So that I can participate by posting phrases and comments.
 
 ### Acceptance Criteria
-- **Given** a visitor with valid user details (username, email, password)  
+- **Given** a visitor with valid user details (username, image, email, password)  
   **When** they submit the registration form  
   **Then** the system creates the account and allows them to log in.
 - **Given** a visitor using an already registered email  
@@ -55,7 +55,7 @@ I want to publish a phrase on the wall
 So that I can share my ideas with other users.
 
 ### Acceptance Criteria
-- **Given** an authenticated user and a valid phrase  
+- **Given** an authenticated user and a valid phrase with a style (font, font size amd color)
   **When** they publish the phrase  
   **Then** it becomes visible to all users  
   And it is associated with the posting user  
