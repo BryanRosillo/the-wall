@@ -1,3 +1,72 @@
+## General .NET Core ##
+# User-specific files
+.vs
+.vscode
+.idea
+# User-specific config files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer Package
+*.wixpdb
+
+# JetBrains Rider
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# User-specific files
+# Uncomment if you have specific IDEs or editors that generate temporary files
+# .vscode
+# .idea
+
+# Windows Installer
+#*.cab
+#*.msi
+
+# Npm packages
+node_modules/
+
+# VSCode settings
+.vscode/
+
+## Build results ##
+bin/
+obj/
+
+## xUnit ##
+# Test result files
+TestResults/
+
+# Local History for JetBrains Rider
+.idea/.idea.history/
+
+# NuGet
+# Uncomment if you are using NuGet packages
+# *.nupkg
+# .nuget/
+
+# Logs
+*.log
+
+# ASP.NET Debugging files
+*.dbmdl
+
+## Java / BlueJ / J2ME ##
 # Compiled class file
 *.class
 
@@ -19,6 +88,6 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
