@@ -53,18 +53,12 @@ public class PhraseManagementSteps
         item.Author.Should().NotBeNull();
     }
 
-    [Then(@"the user’s name or alias is displayed")]
+    [Then(@"the user’s name or alias is displayed.")]
     public void ThenTheUsersNameOrAliasIsDisplayed()
     {
         var item = _context.Wall!.Single(item => item.PhraseText == _context.Phrase!.Text);
 
         item.Author.Should().NotBeNull();
-    }
-
-    [Then(@"the phrase appears on the wall\.")]
-    public void ThenThePhraseAppearsOnTheWall()
-    {
-        _context.Wall.Should().Contain(item => item.PhraseText == _context.Phrase!.Text);
     }
 
 

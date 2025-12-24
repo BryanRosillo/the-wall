@@ -14,5 +14,4 @@ Feature: Phrase management
     When the user publish the phrase
     Then it becomes visible to all users
     And it is associated with the posting user
-    And the user’s name or alias is displayed
-    And the phrase appears on the wall.
+    And the user’s name or alias is displayed.
