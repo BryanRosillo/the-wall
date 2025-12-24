@@ -1,0 +1,36 @@
+name: CI - Build and Test
+
+on: 
+  push: 
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - main
+
+jobs: 
+  build: 
+    runs-on: ubuntu-latest
+
+    defaults:
+        run:
+            working-directory: backend/phrase-service
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with: 
+          dotnet-version: '9.0.102'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Run tests (BDD - expected to fail)
+        run: dotnet test
+        continue-on-error: true

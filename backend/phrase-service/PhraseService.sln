@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C843CA10-458E-46B4-81E6-B8481A85B470}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhraseService.Api", "src\PhraseService.Api\PhraseService.Api.csproj", "{A8C8A8EF-F5A5-4F86-BFD8-A92C66F523CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A9D71B76-557D-4AA2-BB21-5E41370E4CE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhraseService.BddTests", "tests\PhraseService.BddTests\PhraseService.BddTests.csproj", "{3D6F0BC2-38FC-4609-8386-FBFB82C258E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhraseService.UnitTests", "tests\PhraseService.UnitTests\PhraseService.UnitTests.csproj", "{D7C5C17F-A710-475E-9837-6F2BBB28A8BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhraseService.Domain", "src\PhraseService.Domain\PhraseService.Domain.csproj", "{5D56CB4B-0D27-445A-9691-53E621379958}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8C8A8EF-F5A5-4F86-BFD8-A92C66F523CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8C8A8EF-F5A5-4F86-BFD8-A92C66F523CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8C8A8EF-F5A5-4F86-BFD8-A92C66F523CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8C8A8EF-F5A5-4F86-BFD8-A92C66F523CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D6F0BC2-38FC-4609-8386-FBFB82C258E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D6F0BC2-38FC-4609-8386-FBFB82C258E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D6F0BC2-38FC-4609-8386-FBFB82C258E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D6F0BC2-38FC-4609-8386-FBFB82C258E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7C5C17F-A710-475E-9837-6F2BBB28A8BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7C5C17F-A710-475E-9837-6F2BBB28A8BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7C5C17F-A710-475E-9837-6F2BBB28A8BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7C5C17F-A710-475E-9837-6F2BBB28A8BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D56CB4B-0D27-445A-9691-53E621379958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D56CB4B-0D27-445A-9691-53E621379958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D56CB4B-0D27-445A-9691-53E621379958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D56CB4B-0D27-445A-9691-53E621379958}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A8C8A8EF-F5A5-4F86-BFD8-A92C66F523CA} = {C843CA10-458E-46B4-81E6-B8481A85B470}
+		{3D6F0BC2-38FC-4609-8386-FBFB82C258E9} = {A9D71B76-557D-4AA2-BB21-5E41370E4CE1}
+		{D7C5C17F-A710-475E-9837-6F2BBB28A8BB} = {A9D71B76-557D-4AA2-BB21-5E41370E4CE1}
+		{5D56CB4B-0D27-445A-9691-53E621379958} = {C843CA10-458E-46B4-81E6-B8481A85B470}
+	EndGlobalSection
+EndGlobal

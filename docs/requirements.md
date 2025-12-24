@@ -55,14 +55,19 @@ I want to publish a phrase on the wall
 So that I can share my ideas with other users.
 
 ### Acceptance Criteria
-- **Given** an authenticated user and a valid phrase with a style (font, font size amd color)
+- **Given** an authenticated user  
+  And a phrase with non-empty text  
+  And the text length is less than 500 characters  
+  And a style (font, font size, and color)  
   **When** they publish the phrase  
   **Then** it becomes visible to all users  
   And it is associated with the posting user  
-  And the user’s name or alias is displayed  
-  And the phrase appears on the wall.
-- **If** the phrase is empty or exceeds the character limit  
-  **Then** the system displays an error.
+  And the user’s name or alias is displayed.
+- **Given** an authenticated user  
+  And a phrase with empty text or more than 500 characters  
+  **When** the user publishes the phrase  
+  **Then** the system displays an error  
+  And the phrase is not published.
 
 ---
 
