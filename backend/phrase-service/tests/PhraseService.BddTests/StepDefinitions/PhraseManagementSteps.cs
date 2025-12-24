@@ -21,11 +21,22 @@ public class PhraseManagementSteps
         _context.AuthToken = "fake-token";
     }
 
-    [Given(@"a valid phrase with a style \(font, font size and color\)")]
-    public void GivenAValidPhraseWithStyle()
+    [Given(@"a phrase with non-empty text")]
+    public void GivenAPhraseWithNonEmptyText()
     {
         _context.Phrase = new PhraseRequest();
         _context.Phrase.Text = "Hello world";
+    }
+
+    [Given(@"the text length is less than 500 characters")]
+    public void GivenTheTextLengthIsLessThan500Characters()
+    {
+        _context.Phrase.Text = new string('a', 499);
+    }
+
+    [Given(@"a style \(font, font size and color\)")]
+    public void GivenAStyle()
+    {
         _context.Phrase.Font = "Arial";
         _context.Phrase.FontSize = 10;
         _context.Phrase.Color = "#000000";
