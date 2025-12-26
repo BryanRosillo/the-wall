@@ -1,3 +1,6 @@
+using PhraseService.Domain.Entities;
+using PhraseService.Domain.Exceptions;
+
 public class PhraseTests
 {
     [Fact]

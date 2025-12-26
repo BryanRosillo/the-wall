@@ -1,6 +1,9 @@
-public class TextLongException : Exception
+namespace PhraseService.Domain.Exceptions
 {
-    public TextLongException() : base("The text exceeds the maximum allowed length of 500 characters.")
+    public class TextLongException : Exception
     {
+        public TextLongException() : base("The text exceeds the maximum allowed length of 500 characters.")
+        {
+        }
     }
 }

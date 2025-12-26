@@ -1,6 +1,9 @@
-public class NullTextException : Exception
+namespace PhraseService.Domain.Exceptions
 {
-    public NullTextException() : base("The text cannot be null or empty.")
+    public class NullTextException : Exception
     {
+        public NullTextException() : base("The text cannot be null or empty.")
+        {
+        }
     }
 }
