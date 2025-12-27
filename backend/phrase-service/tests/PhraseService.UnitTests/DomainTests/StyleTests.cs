@@ -1,3 +1,5 @@
+using PhraseService.Domain.ValueObjects;
+
 public class StyleTests
 {
     [Fact]
