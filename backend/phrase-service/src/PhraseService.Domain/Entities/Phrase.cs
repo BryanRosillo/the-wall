@@ -26,7 +26,7 @@ namespace PhraseService.Domain.Entities
                 throw new NullAuthorIdException();
             }
             
-
+            AuthorId = author;
             Style = style;
             Text = textToAdd;
         }
