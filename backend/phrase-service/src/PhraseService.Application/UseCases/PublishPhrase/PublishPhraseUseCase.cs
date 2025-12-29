@@ -15,7 +15,7 @@ namespace PhraseService.Application.UseCases.PublishPhrase
 
         public async Task Execute(PublishPhraseCommand command)
         {
-            Phrase phrase = new Phrase(command.Text, command.Style);
+            Phrase phrase = new Phrase(command.Text, command.UserId, command.Style);
 
             await _repository.SaveAsync(phrase);
         }

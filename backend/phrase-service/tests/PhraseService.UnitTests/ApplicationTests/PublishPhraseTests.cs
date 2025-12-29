@@ -19,7 +19,7 @@ public class PublishPhraseTests
 
         Assert.NotNull(repository.SavedPhrase);
         Assert.Equal("Hello world", repository.SavedPhrase.Text);
-        Assert.Equal("1", repository.SavedPhrase.UserId);
+        Assert.Equal("1", repository.SavedPhrase.AuthorId);
     }
  
 }
