@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\PhraseService.Domain\PhraseService.Domain.csproj" />
+    <ProjectReference Include="..\..\src\PhraseService.Application\PhraseService.Application.csproj" />
   </ItemGroup>
 
 </Project>

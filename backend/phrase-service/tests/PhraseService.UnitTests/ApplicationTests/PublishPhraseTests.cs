@@ -1,4 +1,6 @@
 using PhraseService.Domain.ValueObjects;
+using PhraseService.Application.UseCases.PublishPhrase;
+
 public class PublishPhraseTests
 {
     [Fact]
@@ -7,16 +9,15 @@ public class PublishPhraseTests
         var repository = new FakePhraseRepository();
         var useCase = new PublishPhraseUseCase(repository);
 
-        var command = new PublishPhraseCommand(
-            text: "Hello world",
-            style: new Style("Arial", 10, "#0000FF"),
-            userId: "1" 
-        );
+        var command = new PublishPhraseCommand{
+            Text = "Hello world",
+            Style =  new Style("Arial", 10, "#0000FF")
+        };
 
         await useCase.Execute(command);
 
         Assert.NotNull(repository.SavedPhrase);
-        Assert.Equal("Hello world", repository.SavedPhrase);
+        Assert.Equal("Hello world", repository.SavedPhrase.Text);
     }
  
 }

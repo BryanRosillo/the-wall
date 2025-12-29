@@ -1,4 +1,5 @@
 using PhraseService.Domain.Entities;
+using PhraseService.Application.Ports;
 public class FakePhraseRepository : IPhraseRepository
 {
     public Phrase? SavedPhrase {get; private set;}
