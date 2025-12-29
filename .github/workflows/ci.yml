@@ -31,6 +31,9 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
 
-      - name: Run tests (BDD - expected to fail)
-        run: dotnet test
+      - name: Run unit tests
+        run: dotnet test ./tests/PhraseService.UnitTests/
+
+      - name: Run BDD tests (contract not implemented yet)
+        run: dotnet test ./tests/PhraseService.BddTests/
         continue-on-error: true
