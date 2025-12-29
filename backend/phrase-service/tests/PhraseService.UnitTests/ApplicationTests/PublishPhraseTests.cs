@@ -11,6 +11,7 @@ public class PublishPhraseTests
 
         var command = new PublishPhraseCommand{
             Text = "Hello world",
+            UserId = "1",
             Style =  new Style("Arial", 10, "#0000FF")
         };
 
@@ -18,6 +19,7 @@ public class PublishPhraseTests
 
         Assert.NotNull(repository.SavedPhrase);
         Assert.Equal("Hello world", repository.SavedPhrase.Text);
+        Assert.Equal("1", repository.SavedPhrase.UserId);
     }
  
 }
