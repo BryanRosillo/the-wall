@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhraseService.Domain", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhraseService.Application", "src\PhraseService.Application\PhraseService.Application.csproj", "{1E861FA7-18F9-44EB-BDF2-DF66D7472A3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhraseService.Infrastructure", "src\PhraseService.Infrastructure\PhraseService.Infrastructure.csproj", "{0F8EFE0C-74A8-4F72-ACA3-8FA9338A9268}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{1E861FA7-18F9-44EB-BDF2-DF66D7472A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E861FA7-18F9-44EB-BDF2-DF66D7472A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E861FA7-18F9-44EB-BDF2-DF66D7472A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F8EFE0C-74A8-4F72-ACA3-8FA9338A9268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F8EFE0C-74A8-4F72-ACA3-8FA9338A9268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F8EFE0C-74A8-4F72-ACA3-8FA9338A9268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F8EFE0C-74A8-4F72-ACA3-8FA9338A9268}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A8C8A8EF-F5A5-4F86-BFD8-A92C66F523CA} = {C843CA10-458E-46B4-81E6-B8481A85B470}
@@ -53,5 +59,6 @@ Global
 		{D7C5C17F-A710-475E-9837-6F2BBB28A8BB} = {A9D71B76-557D-4AA2-BB21-5E41370E4CE1}
 		{5D56CB4B-0D27-445A-9691-53E621379958} = {C843CA10-458E-46B4-81E6-B8481A85B470}
 		{1E861FA7-18F9-44EB-BDF2-DF66D7472A3B} = {C843CA10-458E-46B4-81E6-B8481A85B470}
+		{0F8EFE0C-74A8-4F72-ACA3-8FA9338A9268} = {C843CA10-458E-46B4-81E6-B8481A85B470}
 	EndGlobalSection
 EndGlobal
