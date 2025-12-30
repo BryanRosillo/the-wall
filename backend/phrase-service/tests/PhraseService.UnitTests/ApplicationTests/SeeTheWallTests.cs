@@ -17,7 +17,7 @@ public class SeeTheWallTests
 
         var useCase = new SeeTheWallUseCase(repository);
 
-        var phrases = useCase.Execute();
+        var phrases = await useCase.Execute();
 
         Assert.Equal(2, phrases.Count);
         Assert.Equal("The wall is amazing.", phrases[0].Text);
@@ -48,7 +48,7 @@ public class SeeTheWallTests
 
         var useCase = new SeeTheWallUseCase(repository);
 
-        var phrases = useCase.Execute();
+        var phrases = await useCase.Execute();
 
         Assert.Equal("1", phrases[0].AuthorId);
     }
