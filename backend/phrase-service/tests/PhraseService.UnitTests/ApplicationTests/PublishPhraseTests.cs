@@ -18,9 +18,9 @@ public class PublishPhraseTests
 
         await useCase.Execute(command);
 
-        Assert.NotNull(repository.SavedPhrase);
-        Assert.Equal("Hello world", repository.SavedPhrase.Text);
-        Assert.Equal("1", repository.SavedPhrase.AuthorId);
+        Assert.NotNull(repository.Phrases);
+        Assert.Equal("Hello world", repository.Phrases[0].Text);
+        Assert.Equal("1", repository.Phrases[0].AuthorId);
     }
 
     [Fact]
