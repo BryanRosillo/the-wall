@@ -34,6 +34,5 @@ jobs:
       - name: Run unit tests
         run: dotnet test ./tests/PhraseService.UnitTests/
 
-      - name: Run BDD tests (contract not implemented yet)
+      - name: Run BDD tests
         run: dotnet test ./tests/PhraseService.BddTests/
-        continue-on-error: true

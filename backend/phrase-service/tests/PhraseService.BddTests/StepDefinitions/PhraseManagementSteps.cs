@@ -19,12 +19,13 @@ public class PhraseManagementSteps
     public void GivenAnAuthenticatedUser()
     {
         _context.AuthToken = "fake-token";
+        _context.Phrase = new PhraseRequest();
+        _context.Phrase.UserId = "1";
     }
 
     [Given(@"a phrase with non-empty text")]
     public void GivenAPhraseWithNonEmptyText()
     {
-        _context.Phrase = new PhraseRequest();
         _context.Phrase.Text = "Hello world";
     }
 
@@ -53,23 +54,23 @@ public class PhraseManagementSteps
     public async Task ThenItBecomesVisibleToAllUsers()
     {
         _context.Wall = await _context.Client.GetFromJsonAsync<List<WallItem>>("/wall");
-        _context.Wall.Should().Contain(item => item.PhraseText == _context.Phrase.Text);
+        _context.Wall.Should().Contain(item => item.Text == _context.Phrase.Text);
     }
 
     [Then(@"it is associated with the posting user")]
     public void ThenItIsAssociatedWithThePostingUser()
     {
-        var item = _context.Wall!.Single(item => item.PhraseText == _context.Phrase!.Text);
+        var item = _context.Wall!.Single(item => item.Text == _context.Phrase!.Text);
 
-        item.Author.Should().NotBeNull();
+        item.AuthorId.Should().NotBeNull();
     }
 
     [Then(@"the user’s name or alias is displayed.")]
     public void ThenTheUsersNameOrAliasIsDisplayed()
     {
-        var item = _context.Wall!.Single(item => item.PhraseText == _context.Phrase!.Text);
+        var item = _context.Wall!.Single(item => item.Text == _context.Phrase!.Text);
 
-        item.Author.Should().NotBeNull();
+        item.AuthorId.Should().NotBeNull();
     }
 
 
