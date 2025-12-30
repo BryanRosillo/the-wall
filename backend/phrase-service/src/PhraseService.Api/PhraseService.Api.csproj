@@ -10,4 +10,10 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PhraseService.Infrastructure\PhraseService.Infrastructure.csproj" />
+    <ProjectReference Include="..\PhraseService.Application\PhraseService.Application.csproj" />
+    <ProjectReference Include="..\PhraseService.Domain\PhraseService.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

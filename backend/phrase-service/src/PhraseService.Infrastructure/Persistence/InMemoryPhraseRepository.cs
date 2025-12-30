@@ -8,7 +8,7 @@ namespace PhraseService.Infrastructure.Persistence
         private readonly List<Phrase> _phrases = new ();
         public Task SaveAsync(Phrase phrase)
         {
-            Phrases.Add(phrase);
+            _phrases.Add(phrase);
             return Task.CompletedTask;
         }
         
