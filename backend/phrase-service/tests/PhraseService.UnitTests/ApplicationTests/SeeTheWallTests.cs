@@ -1,5 +1,6 @@
 using PhraseService.Domain.ValueObjects;
 using PhraseService.Domain.Entities;
+using PhraseService.Application.UseCases.SeeTheWall;
 public class SeeTheWallTests
 {
     [Fact]

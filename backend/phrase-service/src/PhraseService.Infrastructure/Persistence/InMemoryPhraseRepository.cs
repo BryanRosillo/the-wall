@@ -11,6 +11,11 @@ namespace PhraseService.Infrastructure.Persistence
             _phrases.Add(phrase);
             return Task.CompletedTask;
         }
+
+        public Task<IReadOnlyList<Phrase>> GetAllAsync()
+        {
+            return Task.FromResult((IReadOnlyList<Phrase>)_phrases);
+        }
         
     }
 }
