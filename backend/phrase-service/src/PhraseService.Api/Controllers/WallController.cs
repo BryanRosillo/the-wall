@@ -19,7 +19,15 @@ namespace PhraseService.Api.Controllers
         {
             var phrases = await _useCase.Execute();
 
-            return Ok(phrases);
+            var response = phrases.Select(p => new WallItem(
+                Text: p.Text,
+                AuthorId: p.AuthorId,
+                Font: p.Style.Font,
+                FontSize: p.Style.FontSize,
+                Color: p.Style.Color
+            ));
+
+            return Ok(response);
         }
     }
 }
