@@ -28,11 +28,28 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
+      - name: Install the SonarScanner for .NET tool
+        run: dotnet tool install --global dotnet-sonarscanner
+
+      - name: SonarCloud begin
+        run: dotnet sonarscanner begin \
+              /o:"darksoft" \
+              /k:"darksoft_the-wall" \
+              /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
+              /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
+
       - name: Build
         run: dotnet build --no-restore
 
       - name: Run unit tests
-        run: dotnet test ./tests/PhraseService.UnitTests/
+        run: dotnet test ./tests/PhraseService.UnitTests/ \
+              --collect:"XPlat Code Coverage" \
+              --results-directory ./TestResults
 
       - name: Run BDD tests
-        run: dotnet test ./tests/PhraseService.BddTests/
+        run: dotnet test ./tests/PhraseService.BddTests/ \
+              --collect:"XPlat Code Coverage" \
+              --results-directory ./TestResults
+
+      - name: SonarCloud end
+        run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
