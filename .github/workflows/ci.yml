@@ -26,6 +26,9 @@ jobs:
 
       - name: Install the SonarScanner for .NET tool
         run: dotnet tool install --global dotnet-sonarscanner
+
+      - name: Install dotnet-coverage
+        run: dotnet tool install --global dotnet-coverage
         
       - name: SonarCloud begin
         run: >
@@ -33,16 +36,13 @@ jobs:
           /o:"darksoft"
           /k:"darksoft_the-wall"
           /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-          /d:sonar.cs.cobertura.reportsPaths="backend/phrase-service/TestResults/**/coverage.cobertura.xml"
+          /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
 
       - name: Build
         run: dotnet build backend/phrase-service --no-restore
 
       - name: Run tests with coverage
-        run: >
-          dotnet test backend/phrase-service
-          --collect:"XPlat Code Coverage"
-          --results-directory backend/phrase-service/TestResults
+        run: dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
 
       - name: SonarCloud end
         run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
