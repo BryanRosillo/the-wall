@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+env:
+  SONAR_CLOUD_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -35,7 +38,7 @@ jobs:
           dotnet sonarscanner begin
           /o:"darksoft"
           /k:"darksoft_the-wall"
-          /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          /d:sonar.token="$SONAR_CLOUD_TOKEN"
           /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
 
       - name: Build
@@ -45,4 +48,4 @@ jobs:
         run: dotnet-coverage collect "dotnet test backend/phrase-service" -f xml -o "coverage.xml"
 
       - name: SonarCloud end
-        run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+        run: dotnet sonarscanner end /d:sonar.token="$SONAR_CLOUD_TOKEN"
