@@ -31,14 +31,16 @@ jobs:
       - name: Install the SonarScanner for .NET tool
         run: dotnet tool install --global dotnet-sonarscanner
 
+      - name: Install ReportGenerator
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool
+        
       - name: SonarCloud begin
         run: >
           dotnet sonarscanner begin
           /o:"darksoft"
           /k:"darksoft_the-wall"
           /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-          /d:sonar.cs.cobertura.reportsPaths="TestResults/**/coverage.cobertura.xml"
-          /d:sonar.cs.vstest.reportsPaths="TestResults/**/*.trx"
+          /d:sonar.cs.opencover.reportsPaths=coverage-report/opencover.xml
 
       - name: Build
         run: dotnet build --no-restore
@@ -48,6 +50,13 @@ jobs:
           dotnet test
           --collect:"XPlat Code Coverage"
           --results-directory ./TestResults
+
+      - name: Convert coverage to OpenCover
+        run: |
+          reportgenerator \
+          -reports:TestResults/**/coverage.cobertura.xml \
+          -targetdir:coverage-report \
+          -reporttypes:OpenCover
 
       - name: SonarCloud end
         run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
