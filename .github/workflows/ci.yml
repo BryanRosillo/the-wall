@@ -1,20 +1,20 @@
 name: CI - Build and Test
 
-on: 
-  push: 
+on:
+  push:
     branches:
       - dev
   pull_request:
     branches:
       - main
 
-jobs: 
-  build: 
+jobs:
+  build:
     runs-on: ubuntu-latest
 
     defaults:
-        run:
-            working-directory: backend/phrase-service
+      run:
+        working-directory: backend/phrase-service
 
     steps:
       - name: Checkout repository
@@ -22,8 +22,8 @@ jobs:
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
-        with: 
-          dotnet-version: '9.0.102'
+        with:
+          dotnet-version: "9.0.102"
 
       - name: Restore dependencies
         run: dotnet restore
@@ -32,24 +32,27 @@ jobs:
         run: dotnet tool install --global dotnet-sonarscanner
 
       - name: SonarCloud begin
-        run: dotnet sonarscanner begin \
-              /o:"darksoft" \
-              /k:"darksoft_the-wall" \
-              /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
-              /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
+        run: >
+          dotnet sonarscanner begin
+          /o:"darksoft"
+          /k:"darksoft_the-wall"
+          /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
 
       - name: Build
         run: dotnet build --no-restore
 
       - name: Run unit tests
-        run: dotnet test ./tests/PhraseService.UnitTests/ \
-              --collect:"XPlat Code Coverage" \
-              --results-directory ./TestResults
+        run: > 
+          dotnet test ./tests/PhraseService.UnitTests/ 
+          --collect:"XPlat Code Coverage" 
+          --results-directory ./TestResults
 
       - name: Run BDD tests
-        run: dotnet test ./tests/PhraseService.BddTests/ \
-              --collect:"XPlat Code Coverage" \
-              --results-directory ./TestResults
+        run: >
+         dotnet test ./tests/PhraseService.BddTests/ 
+         --collect:"XPlat Code Coverage" 
+         --results-directory ./TestResults
 
       - name: SonarCloud end
         run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
