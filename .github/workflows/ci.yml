@@ -42,7 +42,7 @@ jobs:
         run: dotnet build backend/phrase-service --no-restore
 
       - name: Run tests with coverage
-        run: dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
+        run: dotnet-coverage collect "dotnet test backend/phrase-service" -f xml -o "coverage.xml"
 
       - name: SonarCloud end
         run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
