@@ -12,10 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: backend/phrase-service
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,13 +22,10 @@ jobs:
           dotnet-version: "9.0.102"
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore backend/phrase-service
 
       - name: Install the SonarScanner for .NET tool
         run: dotnet tool install --global dotnet-sonarscanner
-
-      - name: Install ReportGenerator
-        run: dotnet tool install --global dotnet-reportgenerator-globaltool
         
       - name: SonarCloud begin
         run: >
@@ -40,23 +33,16 @@ jobs:
           /o:"darksoft"
           /k:"darksoft_the-wall"
           /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-          /d:sonar.cs.opencover.reportsPaths=coverage-report/opencover.xml
+          /d:sonar.cs.cobertura.reportsPaths="backend/phrase-service/TestResults/**/coverage.cobertura.xml"
 
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build backend/phrase-service --no-restore
 
       - name: Run tests with coverage
         run: >
-          dotnet test
+          dotnet test backend/phrase-service
           --collect:"XPlat Code Coverage"
-          --results-directory ./TestResults
-
-      - name: Convert coverage to OpenCover
-        run: |
-          reportgenerator \
-          -reports:TestResults/**/coverage.cobertura.xml \
-          -targetdir:coverage-report \
-          -reporttypes:OpenCover
+          --results-directory backend/phrase-service/TestResults
 
       - name: SonarCloud end
         run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
