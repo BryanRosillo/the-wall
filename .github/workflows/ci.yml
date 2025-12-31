@@ -37,22 +37,17 @@ jobs:
           /o:"darksoft"
           /k:"darksoft_the-wall"
           /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-          /d:sonar.cs.cobertura.reportsPaths="**/coverage.cobertura.xml"
+          /d:sonar.cs.cobertura.reportsPaths="TestResults/**/coverage.cobertura.xml"
+          /d:sonar.cs.vstest.reportsPaths="TestResults/**/*.trx"
 
       - name: Build
         run: dotnet build --no-restore
 
-      - name: Run unit tests
-        run: > 
-          dotnet test ./tests/PhraseService.UnitTests/ 
-          --collect:"XPlat Code Coverage" 
-          --results-directory ./TestResults
-
-      - name: Run BDD tests
+      - name: Run tests with coverage
         run: >
-         dotnet test ./tests/PhraseService.BddTests/ 
-         --collect:"XPlat Code Coverage" 
-         --results-directory ./TestResults
+          dotnet test
+          --collect:"XPlat Code Coverage"
+          --results-directory ./TestResults
 
       - name: SonarCloud end
         run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
