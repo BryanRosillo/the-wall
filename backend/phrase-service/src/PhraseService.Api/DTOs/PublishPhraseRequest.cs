@@ -1,8 +1,8 @@
 public class PublishPhraseRequest
 {
-    public string Text { get; set; }
-    public string UserId { get; set; }
-    public string Font { get; set; }
-    public int FontSize { get; set; }
-    public string Color { get; set; }
+    public required string Text { get; set; }
+    public required string UserId { get; set; }
+    public required string Font { get; set; }
+    public required int FontSize { get; set; }
+    public required string Color { get; set; }
 }
