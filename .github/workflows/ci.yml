@@ -37,7 +37,7 @@ jobs:
           /o:"darksoft"
           /k:"darksoft_the-wall"
           /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-          /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
+          /d:sonar.cs.cobertura.reportsPaths="**/coverage.cobertura.xml"
 
       - name: Build
         run: dotnet build --no-restore
