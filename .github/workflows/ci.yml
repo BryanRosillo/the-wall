@@ -1,20 +1,19 @@
 name: CI - Build and Test
 
-on: 
-  push: 
+on:
+  push:
     branches:
       - dev
   pull_request:
     branches:
       - main
 
-jobs: 
-  build: 
-    runs-on: ubuntu-latest
+env:
+  SONAR_CLOUD_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-    defaults:
-        run:
-            working-directory: backend/phrase-service
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -22,17 +21,31 @@ jobs:
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
-        with: 
-          dotnet-version: '9.0.102'
+        with:
+          dotnet-version: "9.0.102"
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore backend/phrase-service
+
+      - name: Install the SonarScanner for .NET tool
+        run: dotnet tool install --global dotnet-sonarscanner
+
+      - name: Install dotnet-coverage
+        run: dotnet tool install --global dotnet-coverage
+        
+      - name: SonarCloud begin
+        run: >
+          dotnet sonarscanner begin
+          /o:"darksoft"
+          /k:"darksoft_the-wall"
+          /d:sonar.token="$SONAR_CLOUD_TOKEN"
+          /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
 
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build backend/phrase-service --no-restore
 
-      - name: Run unit tests
-        run: dotnet test ./tests/PhraseService.UnitTests/
+      - name: Run tests with coverage
+        run: dotnet-coverage collect "dotnet test backend/phrase-service" -f xml -o "coverage.xml"
 
-      - name: Run BDD tests
-        run: dotnet test ./tests/PhraseService.BddTests/
+      - name: SonarCloud end
+        run: dotnet sonarscanner end /d:sonar.token="$SONAR_CLOUD_TOKEN"

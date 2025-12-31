@@ -2,30 +2,33 @@ using PhraseService.Application.UseCases.PublishPhrase;
 using PhraseService.Domain.ValueObjects;
 using Microsoft.AspNetCore.Mvc;
 
-[ApiController]
-[Route("phrases")]
-public class PhraseController : ControllerBase
+namespace PhraseService.Api.Controllers
 {
-    private readonly PublishPhraseUseCase _useCase;
-
-    public PhraseController(PublishPhraseUseCase useCase)
+    [ApiController]
+    [Route("phrases")]
+    public class PhraseController : ControllerBase
     {
-        _useCase = useCase;
-    }
+        private readonly PublishPhraseUseCase _useCase;
 
-    [HttpPost]
-    public async Task<IActionResult> Publish([FromBody] PublishPhraseRequest request)
-    {
-        var command = new PublishPhraseCommand
+        public PhraseController(PublishPhraseUseCase useCase)
         {
-            Text = request.Text,
-            UserId = request.UserId,
-            Style = new Style(request.Font, request.FontSize, request.Color)
-        };
+            _useCase = useCase;
+        }
 
-        await _useCase.Execute(command);
+        [HttpPost]
+        public async Task<IActionResult> Publish([FromBody] PublishPhraseRequest request)
+        {
+            var command = new PublishPhraseCommand
+            {
+                Text = request.Text,
+                UserId = request.UserId,
+                Style = new Style(request.Font, request.FontSize, request.Color)
+            };
 
-        return Ok();
+            await _useCase.Execute(command);
 
+            return Ok();
+
+        }
     }
 }
