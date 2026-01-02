@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PhraseService.Application.UseCases.SeeTheWall;
+using PhraseService.Api.DTO;
 
 namespace PhraseService.Api.Controllers
 {
