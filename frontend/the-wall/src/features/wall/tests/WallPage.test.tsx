@@ -1,6 +1,7 @@
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {describe, it, expect} from "vitest";
+import WallPage from "../WallPage";
 
 describe("WallPage",() => {
     it("allows publishing a phrase from the wall", async () =>{
