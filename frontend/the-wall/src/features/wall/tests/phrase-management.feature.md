@@ -13,6 +13,6 @@
 
   Given the wall page is open
   And the publish phrase form is displayed
-  When the user submits a phrase with text and style
+  When the user submits a phrase with text and style (font, fontsize and color)
   Then the wall is refreshed
   And the new phrase is displayed prominently

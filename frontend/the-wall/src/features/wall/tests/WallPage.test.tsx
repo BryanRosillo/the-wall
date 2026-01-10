@@ -14,8 +14,20 @@ describe("WallPage",() => {
         const textArea = screen.getByRole("textbox");
         expect(textArea).toBeInTheDocument();
 
-        // When the user submits a phrase with text and style
+        const fontSelect = screen.getByLabelText(/font/i);
+        expect(fontSelect).toBeInTheDocument();
+
+        const fontSizeSelect = screen.getByLabelText(/font size/i);
+        expect(fontSizeSelect).toBeInTheDocument();
+
+        const colorInput = screen.getByLabelText(/color/i);
+        expect(colorInput).toBeInTheDocument();
+
+        // When the user submits a phrase with text and style (font, fontsize and color)
         await user.type(textArea, "Hello world!");
+        await user.selectOptions(fontSelect, "Arial");
+        await user.selectOptions(fontSizeSelect, "24");
+        await user.type(colorInput, "#ff0000");
 
         const publishButton = screen.getByRole("button",{
             name: /publish/i
