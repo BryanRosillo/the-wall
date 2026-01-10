@@ -1,9 +1,12 @@
+import { defineConfig as testConfig } from "vitest/config";
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
-export default defineConfig({
+const config = defineConfig({
   plugins: [react()],
+})
+
+const tstConfig  = testConfig({
   test: {
     environment: "jsdom",
     globals: true,
@@ -13,3 +16,5 @@ export default defineConfig({
       reportsDirectory: "./coverage"},
   },
 });
+
+export default {...config, ...tstConfig};
