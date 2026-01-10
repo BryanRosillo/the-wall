@@ -92,9 +92,9 @@ jobs:
       - name: SonarCloud scan (Frontend)
         run: |
           cd frontend/the-wall
-          npm run sonar \
+          npm run sonar -- \
             -Dsonar.organization=darksoft \
             -Dsonar.projectKey=darksoft_the-wall-frontend \
-            -Dsonar.sources=frontend/the-wall \
+            -Dsonar.sources=src \
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
             -Dsonar.token=$SONAR_TOKEN
