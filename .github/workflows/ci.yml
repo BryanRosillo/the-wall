@@ -98,4 +98,4 @@ jobs:
             -Dsonar.projectKey=darksoft_the-wall-frontend \
             -Dsonar.sources=src \
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
-            -Dsonar.token=$SONAR_TOKEN
+            -Dsonar.token=$SONAR_CLOUD_TOKEN
