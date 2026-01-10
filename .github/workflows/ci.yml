@@ -93,6 +93,7 @@ jobs:
         run: |
           cd frontend/the-wall
           npm run sonar -- \
+            -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.organization=darksoft \
             -Dsonar.projectKey=darksoft_the-wall-frontend \
             -Dsonar.sources=src \
