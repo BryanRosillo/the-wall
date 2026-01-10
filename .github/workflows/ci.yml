@@ -9,10 +9,15 @@ on:
       - main
 
 env:
-  SONAR_CLOUD_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  SONAR_CLOUD_TOKEN: ${{ secrets.SONAR_GENERAL_TOKEN }}
 
 jobs:
-  build:
+
+  # ============================
+  # Backend – PhraseService (.NET)
+  # ============================
+  backend-ci:
+    name: Backend – PhraseService
     runs-on: ubuntu-latest
 
     steps:
@@ -37,8 +42,10 @@ jobs:
         run: >
           dotnet sonarscanner begin
           /o:"darksoft"
-          /k:"darksoft_the-wall"
+          /k:"darksoft_the-wall-phrase-service"
           /d:sonar.token="$SONAR_CLOUD_TOKEN"
+          /d:sonar.sources=backend/phrase-service
+          /d:sonar.exclusions=frontend/**
           /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
 
       - name: Build
