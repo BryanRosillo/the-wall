@@ -1,5 +1,6 @@
 using PhraseService.Application.UseCases.PublishPhrase;
 using PhraseService.Domain.ValueObjects;
+using PhraseService.Api.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PhraseService.Api.Controllers

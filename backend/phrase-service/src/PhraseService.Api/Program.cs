@@ -2,6 +2,7 @@ using PhraseService.Application.UseCases.PublishPhrase;
 using PhraseService.Application.UseCases.SeeTheWall;
 using PhraseService.Application.Ports;
 using PhraseService.Infrastructure.Persistence;
+using PhraseService.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,8 @@ var app = builder.Build();
 
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 

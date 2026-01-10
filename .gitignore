@@ -48,6 +48,13 @@ node_modules/
 bin/
 obj/
 
+## Coverage results ##
+# Vitest coverage
+coverage/
+
+## Build vite ##
+dist/
+
 ## xUnit ##
 # Test result files
 TestResults/
