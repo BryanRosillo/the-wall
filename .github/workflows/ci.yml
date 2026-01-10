@@ -56,3 +56,45 @@ jobs:
 
       - name: SonarCloud end
         run: dotnet sonarscanner end /d:sonar.token="$SONAR_CLOUD_TOKEN"
+        
+  # ============================
+  # Frontend – React + TypeScript
+  # ============================
+  frontend-ci:
+    name: Frontend 
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6.1.0
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: |
+          cd frontend/the-wall
+          npm install
+
+      - name: Run tests with coverage
+        run: |
+          cd frontend/the-wall
+          npm run test -- --coverage
+
+      - name: Build frontend
+        run: |
+          cd frontend/the-wall
+          npm run build
+
+      - name: SonarCloud scan (Frontend)
+        run: |
+          cd frontend/the-wall
+          npm run sonar \
+            -Dsonar.organization=darksoft \
+            -Dsonar.projectKey=darksoft_the-wall-frontend \
+            -Dsonar.sources=frontend/the-wall \
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
+            -Dsonar.token=$SONAR_TOKEN
