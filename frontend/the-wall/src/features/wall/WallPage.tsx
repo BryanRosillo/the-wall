@@ -1,9 +1,18 @@
 import PublishForm from "./components/PublishForm";
-import { useState } from "react";
+import { fetchPhrases } from './services/phraseService'
+import { useState, useEffect } from "react";
 
 function WallPage() {
 
     const [phrases, setPhrases] = useState<string[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetchPhrases().then(data => {
+            setPhrases(data);
+            setLoading(false);
+        })
+    }, []);
 
     const handlePublish = (text: string) => {
         setPhrases((prev) => [...prev, text]);
@@ -12,11 +21,15 @@ function WallPage() {
 
     return (
         <div>
-            <PublishForm onPublish={handlePublish}/>
-
-            {phrases.map((phraseText, index)=>(
-                <p key={index}>{phraseText}</p>
-            ))}
+            {loading ? (
+                <div aria-label="loading">Loading...</div>
+            ) : (
+                <>
+                    <PublishForm onPublish={handlePublish} />
+                    {phrases.map((phraseText, index) => (
+                        <p key={index}>{phraseText}</p>
+                    ))}
+                </>)}
         </div>);
 }
 

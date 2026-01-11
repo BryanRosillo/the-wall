@@ -2,18 +2,22 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
 import WallPage from "../WallPage";
+import { fetchPhrases } from '../services/phraseService'
+
+vi.mock('../services/phraseService', () => ({
+    fetchPhrases: vi.fn()
+}));
 
 describe("WallPage", () => {
     it("display loading state while phrases are being loaded", async () => {
-        const user = userEvent.setup();
+        (fetchPhrases as vi.Mock).mockImplementation(
+            () => new Promise(() => { })
+        );
 
         // Given the user opens the wall page
         render(<WallPage />);
 
         // When phrases are being fetched
-        vi.spyOn(phraseService, "fetchPhrases").mockImplementation(
-            () => new Promise(() => { })
-        );
 
         // Then a loading indicator is displayed
         expect(screen.getByLabelText(/loading/i)).toBeInTheDocument();
@@ -24,11 +28,14 @@ describe("WallPage", () => {
     it("allows publishing a phrase from the wall", async () => {
         const user = userEvent.setup();
 
+        (fetchPhrases as vi.Mock).mockResolvedValue([]);
+
         // Given the wall page is open
         render(<WallPage />);
 
         // And the publish phrase form is displayed
-        const textArea = screen.getByRole("textbox");
+
+        const textArea = await screen.findByRole("textbox");
         expect(textArea).toBeInTheDocument();
 
         const fontSelect = screen.getByLabelText(/font/i);
