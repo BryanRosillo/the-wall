@@ -1,4 +1,5 @@
 import PublishForm from "./components/PublishForm";
+import Loading from "./components/Loading";
 import { fetchPhrases } from './services/phraseService'
 import { useState, useEffect } from "react";
 
@@ -18,19 +19,18 @@ function WallPage() {
         setPhrases((prev) => [...prev, text]);
     };
 
+    if(loading) {
+        return <Loading />;
+    }
 
     return (
-        <div>
-            {loading ? (
-                <div aria-label="loading">Loading...</div>
-            ) : (
-                <>
-                    <PublishForm onPublish={handlePublish} />
-                    {phrases.map((phraseText, index) => (
-                        <p key={index}>{phraseText}</p>
-                    ))}
-                </>)}
-        </div>);
+        <>
+            <PublishForm onPublish={handlePublish} />
+            {phrases.map((phraseText, index) => (
+                <p key={index}>{phraseText}</p>
+            ))}
+        </>
+    );
 }
 
 export default WallPage;
