@@ -1,10 +1,27 @@
-import {render, screen} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {describe, it, expect} from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import WallPage from "../WallPage";
 
-describe("WallPage",() => {
-    it("allows publishing a phrase from the wall", async () =>{
+describe("WallPage", () => {
+    it("display loading state while phrases are being loaded", async () => {
+        const user = userEvent.setup();
+
+        // Given the user opens the wall page
+        render(<WallPage />);
+
+        // When phrases are being fetched
+        vi.spyOn(phraseService, "fetchPhrases").mockImplementation(
+            () => new Promise(() => { })
+        );
+
+        // Then a loading indicator is displayed
+        expect(screen.getByLabelText(/loading/i)).toBeInTheDocument();
+    });
+});
+
+describe("WallPage", () => {
+    it("allows publishing a phrase from the wall", async () => {
         const user = userEvent.setup();
 
         // Given the wall page is open
@@ -29,7 +46,7 @@ describe("WallPage",() => {
         await user.selectOptions(fontSizeSelect, "10");
         await user.type(colorInput, "#ff0000");
 
-        const publishButton = screen.getByRole("button",{
+        const publishButton = screen.getByRole("button", {
             name: /publish/i
         });
 

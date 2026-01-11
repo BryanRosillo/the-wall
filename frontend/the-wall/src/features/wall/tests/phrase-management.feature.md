@@ -9,6 +9,12 @@
     As a user 
     I want to publish and view phrases
 
+### Scenario: Display loading state while phrases are being loaded
+
+  Given the user opens the wall page
+  When phrases are being fetched
+  Then a loading indicator is displayed
+
 ### Scenario: Publish a phrase from the wall
 
   Given the wall page is open
@@ -16,3 +22,4 @@
   When the user submits a phrase with text and style (font, fontsize and color)
   Then the wall is refreshed
   And the new phrase is displayed prominently
+
