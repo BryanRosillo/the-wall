@@ -25,6 +25,22 @@ describe("WallPage", () => {
 });
 
 describe("WallPage", () => {
+    it("display phrases on the wall", async ()=>{
+        (fetchPhrases as vi.Mock).mockResolvedValue([{
+            "phraseText": "Hello world",
+        }]);
+
+        // Given the wall page is open
+        render(<WallPage/>);
+        // And phrases have been loaded
+    
+        // Then a list of phrases is displayed on the wall
+        expect(await screen.findByText("Hello world")).toBeInTheDocument();
+
+    });
+});
+
+describe("WallPage", () => {
     it("allows publishing a phrase from the wall", async () => {
         const user = userEvent.setup();
 

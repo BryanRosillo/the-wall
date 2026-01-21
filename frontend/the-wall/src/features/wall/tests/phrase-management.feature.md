@@ -15,6 +15,12 @@
   When phrases are being fetched
   Then a loading indicator is displayed
 
+### Scenario: Display phrases on the wall
+
+  Given the wall page is open
+  And phrases have been loaded
+  Then a list of phrases is displayed on the wall
+
 ### Scenario: Publish a phrase from the wall
 
   Given the wall page is open
